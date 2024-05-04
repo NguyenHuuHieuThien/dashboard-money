@@ -1,0 +1,11 @@
+.pie-amount{
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 10px solid;
+}
+
+
+.form-check-input:checked {
+    background: #ccc !important;
+}

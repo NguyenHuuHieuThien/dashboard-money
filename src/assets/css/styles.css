@@ -1,0 +1,42 @@
+
+@import url('./all.min.css');
+:root{
+  --main-color: #1f2228;
+}
+input, textarea, input:focus{
+  outline: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+td{
+  font-size: 15px;
+}
+.bg-header{
+  background-color: #17171a !important;
+}
+.bg-main{
+  background-color: var(--main-color);
+  min-height: 100vh;
+}
+.bg-search{
+  background-color: #6c757d !important;
+}
+.fs-7{
+  font-size: 13px !important;
+}
+
+.table>:not(caption)>*>* {
+  padding: .5rem .5rem;
+  color: white;
+  background-color: var(--main-color);
+  border-bottom-width: 0cap;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+thead{
+  border-bottom: 3px solid #ccc !important;
+}
+
+tbody, td, tfoot, th, tr {
+  border-top: 1px solid #343a40 !important;
+}
