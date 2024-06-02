@@ -5,7 +5,7 @@
     <div class="px-3 sticky-top">
         <div class="bg-search text-white py-2 px-2 rounded-1 d-flex gap-2 align-items-center">
             <div>
-                <span class="btn btn-success rounded-1 py-0" data-bs-toggle="modal" data-bs-target="#add-debt">
+                <span class="btn btn-success rounded-1 py-0" (click)="modalControl('#friend-handle')">
                     <i class="fa-solid fa-plus"></i>
                     <span class="ms-2">Thêm</span>
                 </span>
@@ -18,7 +18,8 @@
             </div>
             <div>
                 <div class="d-flex align-items-center justify-content-center bg-header px-2 rounded-1 text-white">
-                    <input type="text" placeholder="Tìm kiếm..." class="form-control form-control-sm border-0 flex-full text-white p-0">
+                    <input type="text" placeholder="Tìm kiếm..."
+                        class="form-control form-control-sm border-0 flex-full text-white p-0">
                     <span class="border-start border-white px-2"><i class="fa-solid fa-search"></i></span>
                 </div>
             </div>
@@ -27,25 +28,31 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Thời gian</th>
-                        <th scope="col">Nội dung</th>
-                        <th scope="col">Số tiền</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Trạng thái</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">SĐT</th>
+                        <th scope="col">Tiền</th>
+                        <th scope="col">MXH</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
                         <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
+                            <span>
+                                <i class="fa-brands fa-google"></i>
+                                <span class="ms-2">chienhoo@gmail.com</span>
                             </span>
+                        </td>
+                        <td>Hồ Duy Chiến</td>
+                        <td><span><i class="fa-solid fa-phone"></i><span class="ms-2">0762766682</span></span></td>
+                        <td>35000</td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <span><i class="fa-brands fa-facebook text-primary"></i></span>
+                                <span><i class="fa-brands fa-instagram text-warning"></i></span>
+                                <span><i class="fa-brands fa-tiktok "></i></span>
+                            </div>
                         </td>
                         <td>
                             <span class="btn btn-sm btn-info rounded-1 py-0">
@@ -58,243 +65,29 @@
                             </span>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
+                    <tr *ngFor="let item of friends">
                         <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
+                            <span>
+                                <i class="fa-brands fa-google"></i>
+                                <span class="ms-2">{{item.email}}</span>
                             </span>
                         </td>
+                        <td>{{item.name}}</td>
+                        <td><span><i class="fa-solid fa-phone"></i><span class="ms-2">{{item.phone}}</span></span></td>
+                        <td>{{item.money}}</td>
                         <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
+                            <div class="d-flex gap-2" *ngIf="item.link.length > 0">
+                                <div *ngFor="let i of item.link">
+                                    <a href="{{i.ref}}" target="_blank"><i class="fa-brands {{i.cls}}"></i></a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="btn btn-sm btn-info rounded-1 py-0" (click)="getFriend(item.id)">
                                 <i class="fa-solid fa-pen-to-square"></i>
                                 <span class="ms-2">Sửa</span>
                             </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-warning rounded-1">
-                                <i class="fa-solid fa-clock"></i>
-                                <span class="ms-2">Đang chờ</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
-                                <i class="fa-solid fa-trash"></i>
-                                <span class="ms-2">Xóa</span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-20-04 19:25:30</td>
-                        <td>Mua 1 lon bò húc và 1 chai trà giải khát</td>
-                        <td>37000</td>
-                        <td>nguyenthienn3347@gmail.com</td>
-                        <td>
-                            <span class="badge bg-success rounded-1">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span class="ms-2">Hoàn tất</span>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="btn btn-sm btn-info rounded-1 py-0">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                                <span class="ms-2">Sửa</span>
-                            </span>
-                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2">
+                            <span class="btn btn-sm btn-danger rounded-1 py-0 ms-2" (click)="delete([item.id])">
                                 <i class="fa-solid fa-trash"></i>
                                 <span class="ms-2">Xóa</span>
                             </span>
@@ -302,6 +95,63 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+<!-- modal add/edit friend -->
+<div class="modal" id="friend-handle" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-1">
+            <div class="modal-header">
+                <h5 class="modal-title">add friend</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" [formGroup]="addFriendForm">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="email">Email</span>
+                        <input type="text" formControlName="email" class="form-control" aria-describedby="email">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="name">Tên</span>
+                        <input type="text" formControlName="name" class="form-control" aria-describedby="name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="phone">SĐT</span>
+                        <input type="text" formControlName="phone" class="form-control" aria-describedby="phone">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="money">Số tiền</span>
+                        <input type="text" formControlName="money" class="form-control" aria-describedby="money">
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-sm btn-success" (click)="addLink()"><i
+                                class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div *ngIf="linkList.length > 0" class="mb-3">
+                        <div *ngFor="let link of linkList;" class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text" id="link-{{link.name}}">Liên kết</span>
+                                <input type="text" name="link" value="{{link.value}}" class="form-control" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <span class="input-group-text" id="des">Mô tả</span>
+                        <textarea type="text" formControlName="description" rows="5" class="form-control"
+                            aria-describedby="des"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" *ngIf="!friendDetail" (click)="friendHanle()"
+                    class="btn btn-sm btn-primary">Thêm</button>
+                <button type="button" *ngIf="friendDetail" (click)="friendHanle(friendDetail.id)"
+                    class="btn btn-sm btn-primary">Sửa</button>
+            </div>
         </div>
     </div>
 </div>
